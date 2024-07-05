@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block page-title %} Meetup Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}" />
+    {% block site-css %}
+    {% endblock %}
+</head>
+
+<body>
+<header id="main-header">
+<nav><a href="/meetups" id="main-logo">DjangoMeetups</a> </nav>
+    <h1>{% block main_heading %} We got great meetups coming up! {% endblock %}</h1>
+    <p> {% block header_content  %}Find the one the best suits needs! {% endblock %}</p>
+</header>
+<main>
+{% block body %}
+    Welcome to All Meetup Site
+{% endblock %}
+</main>
+</body>
+</html>

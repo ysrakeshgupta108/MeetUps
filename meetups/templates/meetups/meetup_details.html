@@ -1,0 +1,46 @@
+{% extends 'meetups/base/base.html' %}
+{% load static %}
+
+{% block page-title %} {{selected_meetup.title}}{% endblock %}
+{% block site-css %}
+    <link rel="stylesheet" href="{% static 'meetups/styles/meetup-detail.css' %}" />
+{% endblock %}
+
+{% block main_heading %} Meeting Details for {{selected_meetup.title}}! {% endblock %}
+{% block header_content  %}Find the one the best suits needs! {% endblock %}
+
+
+{% block body %}
+
+   <article>
+       <img id="main-image" src="{{selected_meetup.image.url}}" alt="meetupimage" />
+
+       <section id="location">
+           <h2>Meetup location</h2>
+           <address>This meetup takes place in
+           <span>{{selected_meetup.meetLocation.name}}</span>, {{selected_meetup.meetLocation.address}}. </address>
+       </section>
+
+       <section id="details">
+       <h2> Meets up All about?</h2>
+        <p>{{selected_meetup.description}}</p>
+           <footer>
+             <p> Need more details? Please contact org ;-
+                 <a href="mailto:{{selected_meetup.organizer_email}}">Contact Org</a> </p>
+           </footer>
+           </section>
+
+       <section id=""registration>
+       <h2> JOin us! </h2>
+       </section>
+        <form action="{% url 'meet-detail' selected_meetup.slug %}" method="POST">
+           {% csrf_token %}
+            {{form.as_p}}
+
+        <div id="registration-actions">
+            <button type="submit">Register</button>
+        </div>
+            </form>
+   </article>
+
+{% endblock %}
